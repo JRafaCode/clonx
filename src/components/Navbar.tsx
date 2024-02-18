@@ -2,11 +2,11 @@
 
 import Link from "next/link";
 import {signIn, useSession, signOut} from "next-auth/react"
+import { useRouter } from "next/navigation";
 
 function Navbar() {
 
     const {data:session} = useSession()
-    console.log(session)
 
     return (
         <nav className="bg-slate-900 flex items-center py-3 justify-between px-24 text-white">
@@ -22,7 +22,12 @@ function Navbar() {
                 <p>{session.user.name} {session.user.email}</p>
                 <img src={session.user.image} alt=""
                 className="w-10 h-10 rounded-full cursor-pointer"/>
-                <button onClick={() => { signOut() }}>
+                <button onClick={async () => { 
+                    await signOut({
+                        callbackUrl: "/",
+                    })
+
+                    }}>
                     Logout
                 </button>
                       
