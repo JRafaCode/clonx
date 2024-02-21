@@ -2,10 +2,9 @@ import {NextResponse} from "next/server";
 import User from "@/models/user";
 import {connectDB} from "@/libs/mongodb"
 import bcrypt from "bcryptjs";
-import mongoose from "mongoose";
+
 
 export async function POST(request: Request){
-    const {MONGODB_URI} = process.env;
     const {fullname, email, password} = await request.json()
     console.log(fullname, email, password)
 
@@ -15,7 +14,7 @@ export async function POST(request: Request){
             message: "password must be at least 6 characters"
         },
         {
-        status: 400
+            status: 400
         }
     );
 
@@ -26,10 +25,10 @@ export async function POST(request: Request){
     if (userFound)
     return NextResponse.json(
         {
-        message: "Email already exists",
+            message: "Email already exists",
         },
         {
-        status: 409,
+            status: 409,
         }
     );
 
