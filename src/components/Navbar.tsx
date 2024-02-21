@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import {signIn, useSession, signOut} from "next-auth/react"
-import { useRouter } from "next/navigation";
 
 function Navbar() {
 
@@ -29,8 +28,8 @@ function Navbar() {
 
                     }}>
                     Logout
-                </button>
-                      
+                </button>  
+
             </div>
             ): (
                 <button onClick={() => signIn()} className="bg-sky-400 px-3 py-2 rounded">
